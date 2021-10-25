@@ -56,7 +56,7 @@
         </div>
 
         <div class="col-6">
-            <form action="myBooking.php" method="get">
+            <form action="myBooking.php" method="post">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="input" class="form-control" name='name' id="name">
@@ -64,7 +64,7 @@
 
                 <div class="form-group mt-3">
                     <label for="date">Event Date</label>
-                    <input type="date" class="form-control" id="date" name='data' placeholder='mm/dd/yyyy'>
+                    <input type="date" class="form-control" id="date" name='date' placeholder='mm/dd/yyyy'>
                 </div>
 
                 <div class="form-group mt-3">

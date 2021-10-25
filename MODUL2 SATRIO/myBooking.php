@@ -46,7 +46,7 @@
     $decoration=$_POST["decoration"];
     $sound=$_POST["sound"];
 
-    $nusantara_Harga = 2000; 
+    $nusantaraHarga = 2000; 
     $garudaHarga = 1000 ;
     $gsgHarga = 500 ;
 
