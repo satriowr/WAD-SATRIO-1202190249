@@ -159,7 +159,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Buku_Table ORDER BY id_buku DESC"
 
                 <div class="mt-3">
                     <label for="formFile" class="form-label">Gambar</label>
-                    <input class="form-control" name='foto' type="file" id="formFile">
+                    <input class="form-control" name='foto' type="file">
                 </div>
 
                 <div class="d-flex justify-content-center" style='margin-top:150px;'>
@@ -181,41 +181,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Buku_Table ORDER BY id_buku DESC"
  
 </body>
 
-<?php
-        if (isset($_POST['tambah'])) {
-            $judul = $_POST['judulBuku'];
-            $penulis = $_POST['penulis'];
-            $tahun = $_POST['tahunTerbit'];
-            $desk = $_POST['desk'];
-            $gambar =$_POST['foto'];
-            $bahasa = implode(",", $_POST['bahasa']);
-            $tag = implode(",", $_POST['tag']);
 
-            $random = rand();
-            $ekstensi =  array('png','jpg','jpeg','gif');
-            $filename = $_FILES['foto']['name'];
-            $ukuran = $_FILES['foto']['size'];
-            $ext = pathinfo($filename, PATHINFO_EXTENSION);
- 
-            if(!in_array($ext,$ekstensi) ) {
-                header("location:index.php?alert=gagal_ekstensi");
-            }else{
-                if($ukuran < 1044070){		
-                    $xx = $rand.'_'.$filename;
-                    move_uploaded_file($_FILES['foto']['tmp_name'], 'gambar/'.$rand.'_'.$filename);
-                    $query=mysql_query("INSERT INTO Buku_Table(judul_buku, penulis, tahun_terbit, deskripsi, gambar, tag, bahasa) VALUES('$judulBuku','$penulis, $tahunTerbit, $desk, $gambar, $bahasa, $tag')");
-                    header("location:index.php?alert=berhasil");
-                }else{
-                    header("location:Satrio_Home.php?alert=gagal_ukuran");
-                }
-            }
 
-              
-            
-        }
-
-        
-        
-       ?>
 
 </html>

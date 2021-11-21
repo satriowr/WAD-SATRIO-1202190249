@@ -15,9 +15,9 @@ CREATE TABLE 'Buku_Table' (
     'penulis_buku' varchar(255) NOT NULL,
     'tahun_terbit' int(100) NOT NULL,
     'deskripsi' text NOT NULL,
-    'gambar' varchar(255) NOT NULL,
     'tag' varchar(255) NOT NULL,
     'bahasa' varchar(255) NOT NULL,
+    'gambar' varchar(255) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 ALTER TABLE 'Buku_table'

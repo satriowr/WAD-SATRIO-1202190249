@@ -1,30 +1,23 @@
-
 <?php
-$judul = $_POST['judulBuku'];
-            $penulis = $_POST['penulis'];
-            $tahun = $_POST['tahunTerbit'];
-            $desk = $_POST['desk'];
-            $gambar =$_POST['foto'];
-            $bahasa = implode(",", $_POST['bahasa']);
-            $tag = implode(",", $_POST['tag']);
+    include 'koneksi.php';
 
-            $random = rand();
-            $ekstensi =  array('png','jpg','jpeg','gif');
-            $filename = $_FILES['foto']['name'];
-            $ukuran = $_FILES['foto']['size'];
-            $ext = pathinfo($filename, PATHINFO_EXTENSION);
- 
-            if(!in_array($ext,$ekstensi) ) {
-                header("location:Satrio_Home.php?alert=gagal_ekstensi");
-            }else{
-                if($ukuran < 1044070){		
-                    $xx = $rand.'_'.$filename;
-                    move_uploaded_file($_FILES['foto']['tmp_name'], 'gambar/'.$rand.'_'.$filename);
-                    $query=mysql_query("INSERT INTO Buku_Table(judul_buku, penulis, tahun_terbit, deskripsi, gambar, tag, bahasa) VALUES('$judulBuku','$penulis, $tahunTerbit, $desk, $gambar, $bahasa, $tag')");
-                    header("location:Satrio_Home.php?alert=berhasil");
-                }else{
-                    header("location:Satrio_Home.php?alert=gagal_ukuran");
-                }
-            }
+    $id = rand();
+    $judul = $_POST['judulBuku'];
+    $penulis = $_POST['penulis'];
+    $tahun = $_POST['tahunTerbit'];
+    $desk = $_POST['desk'];
+    $bahasa = implode(",", $_POST['bahasa']);
+    $tag = implode(",", $_POST['tag']);
 
+    $ekstensi =  array('png','jpg','jpeg','gif');
+    $filename = $_FILES['foto']['name'];
+    $ukuran = $_FILES['foto']['size'];
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    
+    $path = $id.'_'.$filename;
+    move_uploaded_file($_FILES['foto']['tmp_name'],'assets/'.$path);
+
+    $add = mysqli_query($mysqli, "INSERT INTO Buku_table VALUES ('$id','$judul','$penulis','$tahun','$desk','$bahasa','$tag', '$path')");
+
+    header("location:Satrio_Home.php");
 ?>

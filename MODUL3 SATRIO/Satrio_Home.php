@@ -1,10 +1,3 @@
-<?php
-
-include_once("koneksi.php");
- 
-// Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT * FROM Buku_Table ORDER BY id_buku DESC");
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,10 +40,20 @@ $result = mysqli_query($mysqli, "SELECT * FROM Buku_Table ORDER BY id_buku DESC"
     </nav>
 
     <div class="container">
+    <?php
+        include "koneksi.php";
+        $show = "SELECT * FROM Buku_table";
+        $query = mysqli_query($mysqli, $show);
+        $row = mysqli_num_rows($query);
+    ?>
+    <?php
+    if($row == 0) {?>
         <h3 class='text-center' style='margin-top:150px'>Belum Ada Buku</h3>
         <hr style='height:7px; background-color:blue'>
         <p class='text-center' style='font-size:20px'>Silahkan Menambahkan Buku</p>
     </div>
+    ?>}
+
 
     <footer class="footer bg-light mt-5">
         <div class="text-center">
