@@ -40,19 +40,39 @@
     </nav>
 
     <div class="container">
-    <?php
-        include "koneksi.php";
-        $show = "SELECT * FROM Buku_table";
-        $query = mysqli_query($mysqli, $show);
-        $row = mysqli_num_rows($query);
-    ?>
-   
- 
-        <h3 class='text-center' style='margin-top:150px'>Belum Ada Buku</h3>
-        <hr style='height:7px; background-color:blue'>
-        <p class='text-center' style='font-size:20px'>Silahkan Menambahkan Buku</p>
-   =
+        <div class="row justify-content-center">
+            
+                <?php
+                    include "koneksi.php";
+                    $show = "SELECT * FROM Buku_table";
+                    $query = mysqli_query($mysqli, $show);
+                    $row = mysqli_num_rows($query);
+
+                    if($row == 0) {?>
+                        <h3 class='text-center' style='margin-top:150px'>Belum Ada Buku</h3>
+                        <hr style='height:7px; background-color:blue'>
+                        <p class='text-center' style='font-size:20px'>Silahkan Menambahkan Buku</p>
+                    <?php }
+
+                    else {
+                        while($data = mysqli_fetch_array($query)) {
+                        ?>
+                            <div class="col-4 card mx-2" style='width:400px; height:500px; margin-top:100px;'>
+                            <img class='mt-4' src="assets/<?php echo $data['gambar']?>" class="card-img-top" width="fit-content" height="300px">
+                            <div class="card-body">
+                                <h5 class="card-title"><?=$data['judul_buku']?></h5>
+                                <p class="card-text"><?=$data['deskripsi']?></p>
+                                <a href="Satrio_DetailBuku.php?id=<?= $data['id_buku']?>" class="btn btn-primary">Tampilkan lebih lanjut</a>
+                            </div>
+                            </div>
+                        <?php }?>
+                        <?php }?>
+            
+        </div>               
+    </div>
     
+   
+        
 
 
     <footer class="footer bg-light mt-5">
