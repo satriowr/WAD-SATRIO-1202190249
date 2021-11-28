@@ -1,6 +1,8 @@
 <?php 
 session_start();
 
+include "koneksi.php";
+
 if($_SESSION['status']!="sudah_login"){
   header("location:login.php");
 }
@@ -10,6 +12,20 @@ else{
       Berhasil login
     </div>
   <?php
+}
+
+$id = rand();
+
+if (isset($_POST["add"])) {
+  $user_id = $id;
+  $nama_tempat = $_POST["nama_tempat"];
+  $lokasi = $_POST["lokasi"];
+  $harga = $_POST["harga"];
+  $date = $_POST["tanggalPerjalanan"];
+
+  $add = mysqli_query($conn, "INSERT INTO booking VALUES ('$id, $user_id','$nama_tempat','$lokasi','$harga', $date')");
+
+  $message = "Barang berhasil ditambahkan ke keranjang";
 }
 ?>
 
@@ -86,6 +102,7 @@ else{
         <div class="card" style="width: 22rem; margin-right: 20px">
           <img height="220px" src="https://asset.kompas.com/crops/N5Z83656bW7uLqq8UJtlzxV5SEE=/0x0:1020x680/750x500/data/photo/2019/08/29/5d67a6c460dd7.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
+          
             <h5 class="card-title">Raja Ampat, Papua</h5>
             <p class="card-text">
               Kepulauan Raja Ampat merupakan rangkaian empat gugusan pulau yang berdekatan dan berlokasi di barat bagian Kepala Burung Pulau Papua. Secara administrasi, gugusan ini berada di bawah Kabupaten Raja Ampat, Provinsi Papua Barat.
@@ -93,6 +110,7 @@ else{
             <hr />
             <h5 style="font-weight: bold">Rp. 7.000.000</h5>
           </div>
+          
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <div class="button d-flex justify-content-center">
@@ -177,18 +195,23 @@ else{
     </div>
 
     <div class="modal fade" id="modalDate" tabindex="-1">
+      <form method='post'>
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            <label for="tanggalPerjalanan" class="form-label">Tanggal Perjalanan</label>
-            <input type="date" class="form-control" name="tanggalPerjalanan" id="tanggalPerjalanan" />
+              <input type="hidden" name="nama_tempat" value='Raja Ampat'>
+              <input type="hidden" name="lokasi" value='Papua'>
+              <input type="hidden" name="harga" value=7000000>
+              <label for="tanggalPerjalanan" class="form-label">Tanggal Perjalanan</label>
+              <input type="date" class="form-control" name="tanggalPerjalanan" id="tanggalPerjalanan" />
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Tambahkan</button>
+            <button name='add' type="submit" class="btn btn-primary">Tambahkan</button>
           </div>
         </div>
       </div>
+      </form>
     </div>
   </body>
 </html>

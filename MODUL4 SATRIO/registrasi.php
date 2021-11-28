@@ -1,12 +1,3 @@
-<?php
-
-include_once("koneksi.php");
- 
-// Fetch all users data from database
-$result = mysqli_query($conn, "SELECT * FROM Buku_Table ORDER BY id_buku DESC");
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
