@@ -15,6 +15,8 @@
     }
     else {
       header("location:registrasi.php");
+
+      
     }
 
     

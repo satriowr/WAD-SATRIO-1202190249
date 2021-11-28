@@ -96,7 +96,7 @@ $result = mysqli_query($conn, "SELECT * FROM Buku_Table ORDER BY id_buku DESC");
               </div>
 
               <div class="addOn mt-4 text-center">
-                <p>Anda sudah punya akun? <a href="">Login</a></p>
+                <p>Anda sudah punya akun? <a href="login.php">Login</a></p>
               </div>
             </form>
           </div>

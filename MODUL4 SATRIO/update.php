@@ -12,7 +12,7 @@ $nomor = $_POST['nomor'];
 $password = $_POST['password'];
  
 $update = mysqli_query($conn, "UPDATE users SET nama='$nama', no_hp='$nomor', password='$password' WHERE id='$id'");
-$cek = mysqli_num_rows($update);
+
 
 if ($cek==1) {
     $_SESSION['status']="sudah_update";
@@ -20,5 +20,5 @@ if ($cek==1) {
     
   }
 
-header("location:profile.php");
+
 ?>

@@ -7,18 +7,17 @@ $row = mysqli_fetch_array($profile);
 
 session_start();
 
-if($_SESSION['status']!="sudah_update"){
-  header("location:profile.php");
-}
-else{
-  
+if($_SESSION['status']="sudah_update"){
   ?>
-    <div class="alert alert-success mt-5">
+  <div class="alert alert-success mt-5">
       Berhasil update
-    </div>
+  </div> 
   <?php
 }
 
+else{
+  header("location:profile.php");
+}
 
 ?>
 

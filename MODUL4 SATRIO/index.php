@@ -26,6 +26,10 @@ else{
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"     integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"     crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"   crossorigin="anonymous"></script>
+
     <style>
       body {
         background-color: #fff9e7;
@@ -57,14 +61,17 @@ else{
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul style="margin-left: 870px" class="navbar-nav">
-            <li class="nav-item">
-              <a style="color: gray" class="nav-link" aria-current="page" href="registrasi.php">Register</a>
-            </li>
-            <li class="nav-item">
-              <a style="color: gray" class="nav-link" href="login.php">Login</a>
-            </li>
-          </ul>
+        <a href="cart.php">
+        <img style='margin-left:850px' width='20px' src="https://i.ibb.co/jg6v7k3/Pin-Clipart-com-purchase-clipart-85066.png">
+        </a>
+        
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style='text-decoration:none; color:black;'>
+          Lorem ipsum
+        </a>
+        <div style='margin-left: 850px; margin-top:140px' class="dropdown-menu" aria-labelledby="navbarDropdown" id='navbarDropdown'>
+          <a class="dropdown-item" href="profile.php">profile</a>
+          <a class="dropdown-item" href="logout.php">logout</a>
+        </div>
         </div>
       </div>
     </nav>
