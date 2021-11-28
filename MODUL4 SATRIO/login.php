@@ -1,11 +1,31 @@
-<?php
-
-include_once("koneksi.php");
+<?php 
  
-// Fetch all users data from database
-$result = mysqli_query($conn, "SELECT * FROM Buku_Table ORDER BY id_buku DESC");
-?>
+include 'koneksi.php';
+ 
+session_start();
+ 
+ 
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+ 
+    $sql = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email' AND password = '$password'");
+    $cek = mysqli_num_rows($sql);
 
+    if ($cek==1) {
+      $_SESSION['status']="sudah_login";
+      header("location:index.php");
+      
+    }
+    else {
+      ?>
+        <div class="alert alert-danger mt-5">
+          Gagal login
+        </div>
+      <?php
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +33,7 @@ $result = mysqli_query($conn, "SELECT * FROM Buku_Table ORDER BY id_buku DESC");
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registrasi</title>
+    <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -31,12 +51,11 @@ $result = mysqli_query($conn, "SELECT * FROM Buku_Table ORDER BY id_buku DESC");
         border-width: 1px;
         border-color: #eeeeee;
         width: 450px;
-        height: 650px;
+        height: 500px;
         background-color: white;
       }
     </style>
   </head>
-
   <body>
     <nav style="background-color: #90b9f3" class="navbar navbar-expand-lg fixed-top">
       <div class="container-fluid">
@@ -47,10 +66,10 @@ $result = mysqli_query($conn, "SELECT * FROM Buku_Table ORDER BY id_buku DESC");
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul style="margin-left: 870px" class="navbar-nav">
             <li class="nav-item">
-              <a style="color: black" class="nav-link active" aria-current="page" href="registrasi.php">Register</a>
+              <a style="color: gray" class="nav-link" aria-current="page" href="registrasi.php">Register</a>
             </li>
             <li class="nav-item">
-              <a style="color: gray" class="nav-link" href="login.php">Login</a>
+              <a style="color: black" class="nav-link active" href="login.php">Login</a>
             </li>
           </ul>
         </div>
@@ -61,22 +80,12 @@ $result = mysqli_query($conn, "SELECT * FROM Buku_Table ORDER BY id_buku DESC");
       <div class="container">
         <div class="form-container">
           <div class="container" style="width: 400px; margin-top: 30px">
-            <h4 class="text-center">Register</h4>
+            <h4 class="text-center">Login</h4>
             <hr />
-            <form action="addRegist.php" method="post">
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nama</label>
-                <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Lengkap" />
-              </div>
-
+            <form method='post'>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Email</label>
                 <input type="email" class="form-control" name="email" placeholder="Masukkan Alamat Email" />
-              </div>
-
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nomor Handphone</label>
-                <input type="number" class="form-control" name="nomor" placeholder="Masukkan Nomor Handphone" />
               </div>
 
               <div class="mb-3">
@@ -84,19 +93,17 @@ $result = mysqli_query($conn, "SELECT * FROM Buku_Table ORDER BY id_buku DESC");
                 <input type="password" class="form-control" name="password" placeholder="Masukkan Kata Sandi" />
               </div>
 
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Konfirmasi Kata Sandi</label>
-                <input type="password" class="form-control" name="passwordConf" placeholder="Masukkan Kata Sandi" />
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                <label class="form-check-label" for="flexCheckDefault"> Remember me </label>
               </div>
 
-              
-
-              <div class="button d-flex justify-content-center">
-                <button style="width: 150px" type="submit" class="btn btn-primary">Daftar</button>
+              <div class="button d-flex justify-content-center mt-5" >
+                <button name='login' style="width: 150px" type="submit" class="btn btn-primary">Login</button>
               </div>
 
               <div class="addOn mt-4 text-center">
-                <p>Anda sudah punya akun? <a href="">Login</a></p>
+                <p>Anda belum punya akun? <a href="">Register</a></p>
               </div>
             </form>
           </div>
@@ -127,5 +134,3 @@ $result = mysqli_query($conn, "SELECT * FROM Buku_Table ORDER BY id_buku DESC");
     
   </body>
 </html>
-
-
