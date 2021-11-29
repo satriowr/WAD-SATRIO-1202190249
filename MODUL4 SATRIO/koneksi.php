@@ -1,6 +1,5 @@
 <?php
 
- 
 $databaseHost = 'localhost';
 $databaseName = 'wad_modul4';
 $databaseUsername = 'root';

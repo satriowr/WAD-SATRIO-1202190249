@@ -127,8 +127,8 @@ else{
           <input class='form-control' type="password" class="form-control" id="passwordConf" name='passwordConf'>
           
           <select class="form-control mt-1">
-            <option>Blue Ocean</option>
-            <option>Dark Boba</option>
+            <option name="blue">Blue Ocean</option>
+            <option name='dark'>Dark Boba</option>
           </select>
 
           <div class="button mt-5 d-flex justify-content-center">

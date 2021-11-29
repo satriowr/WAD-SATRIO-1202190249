@@ -1,18 +1,8 @@
 <?php
 include "koneksi.php";
+
 $cart = mysqli_query($conn, "SELECT * FROM booking");
 $row = mysqli_fetch_array($cart);
-
-$message = "";
-if (isset($_POST["delete"])) {
-    $id = $_POST["id"];
-
-    mysqli_query($conn, "DELETE FROM bookings WHERE id=$id");
-    $message = "Barang berhasil dibuang dari keranjang";
-}
-
-$list = mysqli_query($conn, "SELECT * FROM bookings WHERE user_id=$id");
-
 
 
 ?>
@@ -95,7 +85,7 @@ $list = mysqli_query($conn, "SELECT * FROM bookings WHERE user_id=$id");
                         </tr>
                     </thead>
                     <tbody>                         
-                          ?>
+                         
                             <tr>
                                 <td><?echo $i; ?></td>
                                 <td><? echo $row["nama_tempat"]; ?></td>

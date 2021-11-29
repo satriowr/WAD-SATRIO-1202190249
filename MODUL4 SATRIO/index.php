@@ -6,6 +6,7 @@ include "koneksi.php";
 if($_SESSION['status']!="sudah_login"){
   header("location:login.php");
 }
+
 else{
   ?>
     <div class="alert alert-success mt-5">
@@ -14,19 +15,6 @@ else{
   <?php
 }
 
-$id = rand();
-
-if (isset($_POST["add"])) {
-  $user_id = $id;
-  $nama_tempat = $_POST["nama_tempat"];
-  $lokasi = $_POST["lokasi"];
-  $harga = $_POST["harga"];
-  $date = $_POST["tanggalPerjalanan"];
-
-  $add = mysqli_query($conn, "INSERT INTO booking VALUES ('$id, $user_id','$nama_tempat','$lokasi','$harga', $date')");
-
-  $message = "Barang berhasil ditambahkan ke keranjang";
-}
 ?>
 
 <!DOCTYPE html>
@@ -114,7 +102,7 @@ if (isset($_POST["add"])) {
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <div class="button d-flex justify-content-center">
-                <a href="#modalDate" data-bs-toggle="modal" data-bs-target="#modalDate">
+                <a href="#modalDate1" data-bs-toggle="modal" data-bs-target="#modalDate1">
                   <button style="width: 320px" type="button" class="btn btn-primary">Pesan Tiket</button>
                 </a>
               </div>
@@ -186,32 +174,39 @@ if (isset($_POST["add"])) {
             <h5 class="modal-title">Created By</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+
           <div class="modal-body">
             <p>Nama &nbsp;&nbsp; : Satrio Rahman Wicaksono</p>
             <p>NIM &nbsp; &nbsp; &nbsp; : 1202190249</p>
           </div>
+
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="modalDate" tabindex="-1">
-      <form method='post'>
+    <div class="modal fade" id="modalDate1" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-body">
-              <input type="hidden" name="nama_tempat" value='Raja Ampat'>
-              <input type="hidden" name="lokasi" value='Papua'>
-              <input type="hidden" name="harga" value=7000000>
+        <div class="modal-body">
+        <form method='post' action='addRajaAmp.php'>
+          
+          <div class="form-group">
+              <input class="form-control" type="hidden" name="nama_tempat" value='Raja Ampat'>
+              <input class="form-control" type="hidden" name="lokasi" value='Papua'>
+              <input class="form-control" type="hidden" name="harga" value=7000000>
               <label for="tanggalPerjalanan" class="form-label">Tanggal Perjalanan</label>
               <input type="date" class="form-control" name="tanggalPerjalanan" id="tanggalPerjalanan" />
           </div>
+          </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button name='add' type="submit" class="btn btn-primary">Tambahkan</button>
           </div>
+        </form>
         </div>
       </div>
-      </form>
+      
     </div>
   </body>
 </html>
