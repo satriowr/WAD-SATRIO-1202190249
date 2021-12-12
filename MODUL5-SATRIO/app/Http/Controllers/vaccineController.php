@@ -53,13 +53,15 @@ class vaccineController extends Controller
         return view('Vaccine.editVaccine', compact('dataVaksin'));
     }
 
-    public function postEdit(Request $request){
-        DB::table('vaccines')->where('id',$request->id)->update([
-            'name' => $request->name,
-            'price' => $request->price,
-            'description' => $request->description,
-            'image' => $request->image,
-        ]);
+    public function postEdit(Request $request, $id){
+
+        $getData = $request->all();
+
+        if($request->file('image')) {
+            $getData['image'] = $request->file('image')->store('images');
+        }
+
+        vaccines::find($id)->update($getData);
 
         return redirect('/vaccine');
     }
