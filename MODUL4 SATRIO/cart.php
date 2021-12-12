@@ -1,11 +1,4 @@
-<?php
-include "koneksi.php";
 
-$cart = mysqli_query($conn, "SELECT * FROM booking");
-$row = mysqli_fetch_array($cart);
-
-
-?>
 
 
 <!DOCTYPE html>
@@ -63,14 +56,7 @@ $row = mysqli_fetch_array($cart);
 
     <div class="container">
         <div class="content">
-        <?php if ($message) : ?>
-            <div class="row justify-content-center">
-                <div class="alert alert-warning w-100" role="alert">
-                    <?= $message ?>
-                </div>
-            </div>
-        <?php endif; ?>
-
+        
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-striped table-light">
@@ -84,25 +70,37 @@ $row = mysqli_fetch_array($cart);
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>                         
-                         
-                            <tr>
-                                <td><?echo $i; ?></td>
-                                <td><? echo $row["nama_tempat"]; ?></td>
-                                <td><? echo $row["lokasi"]; ?></td>
-                                <td><? echo $row["tanggal"]; ?></td>
-                                <td>Rp<? echo number_format($row["harga"]); ?></td>
-                                <td>
-                                    <form action="" method="POST">
-                                        <input type="hidden" name="id" value="<?= $row["id"] ?>">
-                                        <button type=" submit" name="delete" class="btn btn-danger" onclick="return confirm('Apa kamu yakin?');">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
+                    <tbody>
+                    <?php
+                      include "koneksi.php";
+                      $cart = mysqli_query($conn, "SELECT * FROM booking");
+                      $nomor = 1;
+                      $sum = 0;
+                      
+                      while($data = mysqli_fetch_array($cart)){
+                        //var_dump($data);  
+                        $sum = $sum + (int)$data['harga']; 
+                    ?>            
+                        <tr>
+                            <td><?php echo $nomor++; ?></td>
+                            <td><?php echo $data["nama_tempat"]; ?></td>
+                            <td><?php echo $data["lokasi"]; ?></td>
+                            <td><?php echo $data["tanggal"]; ?></td>
+                            <td>Rp<?php echo number_format($data["harga"]); ?></td>
+                            <td>
+                                <form action="delete.php" method="POST">
+                                    <input type="hidden" name="id_booking" value=<?= $data["id"]?> >
+                                    <button type=" submit" name="delete" class="btn btn-danger" onclick="return confirm('Apa kamu yakin?');">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                      <?php } ?>
                         <tr>
                             <td colspan="4" class="font-weight-bold">Total</td>
-                            <td colspan="8" class="font-weight-bold">Rp<?echo number_format($total); ?></td>
+                            <td class="fw-bold"
+                                        colspan="2"><?= "Rp " . number_format($sum, 2, ',', '.'); ?></td>
                         </tr>
+                      
                     </tbody>
                 </table>
             </div>
