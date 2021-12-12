@@ -9,7 +9,7 @@
 <body>
     <footer class="footer fixed-bottom" style="background-color:#F8F9FA; height: 40px; margin-top:50px; padding-top:0.1px">
         <div class="text-center mt-3">
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: none; color: black;" >Satrio Rahman Wicaksono-1202190249</a>
+          <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: none; color: black;" >Made with 💗 Satrio Rahman Wicaksono-1202190249</a>
         </div>
     </footer>
 
