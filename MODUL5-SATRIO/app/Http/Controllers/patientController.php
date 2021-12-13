@@ -21,7 +21,7 @@ class patientController extends Controller
 
 
     public function registerPatient($id){
-        $dataVaksin = DB::table('vaccines')->where('id',$id)->get();
+        $dataVaksin = DB::table('vaccines')->where('id',$id)->delete();
         //dd($dataVaksin);
         return view('patient.registerPatient', compact('dataVaksin'));
     }
