@@ -34,8 +34,8 @@ Route::post('/vaccine/input', [vaccineController::class, 'store'] );
 
 Route::get('/vaccine/delete/{id}', [vaccineController::class, 'deleteVaccine'] );
 
-Route::get('/vaccine/edit', [vaccineController::class, 'editVaccine'] );
-Route::post('/vaccine/edit', [vaccineController::class, 'postEdit'] );
+Route::get('/vaccine/edit/{id}', [vaccineController::class, 'editVaccine'] );
+Route::post('/vaccine/edit/{id}', [vaccineController::class, 'postEdit'] );
 
 Route::get('/patient', [patientController::class, 'index'] )->name('patient');
 
